@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+{% block content %}
+{% for scans in scans %}
+<div class="row">
+    <h3>{{ scans.domain }}</h3>
+    <h4>{{ scans.ip }}</h4>
+    <p2>Submitted URL: {{ scans.url }}</p2>
+    <p1>Submission Time: {{ scans.scan_time }}</p1>
+    <div id="parentGroup">
+        <a class="btn btn-primary" data-toggle="collapse" data-target="#Summary" data-parent="#parentGroup"
+            role="button" aria-expanded="true" aria-controls="Summary">Summary</a>
+        <a class="btn btn-primary" data-toggle="collapse" data-target="#HTTP" data-parent="#parentGroup" role="button"
+            aria-expanded="false" aria-controls="HTTP">HTTP</a>
+        <a class="btn btn-primary" data-toggle="collapse" data-target="#WhoIS" data-parent="#parentGroup" role="button"
+            aria-expanded="false" aria-controls="WhoIS">WhoIS</a>
+        <a class="btn btn-primary" data-toggle="collapse" data-target="#Links" data-parent="#parentGroup" role="button"
+            aria-expanded="false" aria-controls="Links">Links</a>
+        <a class="btn btn-primary" role="button" aria-expanded="false"
+            href="{{ scans.vt_link }}" target="_blank" rel="noopener noreferrer">Virus Total</a>
+        <div class="row" data-parent="#parentGroup">
+            <div class="collapse multi-collapse content-section show" id="Summary" data-parent="#parentGroup">
+                <img src="{{ scans.screenshot_path }}" class="img-thumbnail float-right" alt="Website Screenshot">
+            </div>
+            <div class="collapse multi-collapse content-section" id="HTTP" data-parent="#parentGroup">
+                <code class="language-html" data-lang="html">
+                    {{ dom_info }}
+                </code>
+            </div>
+            <div class="collapse multi-collapse content-section" id="WhoIS" data-parent="#parentGroup">
+                    <p>Domain: {{ whois_info['domain_name'] }}<br>
+                    Registrar: {{ whois_info['registrar'] }}<br>
+                    WhoIS Server: {{ whois_info['whois_server'] }}<br>
+                    Creation Date: {{ whois_info['creation_date'] }}<br>
+                    Updated Date: {{ whois_info['updated_date'] }}<br>
+                    Expiration Date: {{ whois_info['expiration_date'] }}<br>
+                    Emails: {{ whois_info['emails'] }}<br>
+                    DNSSEC: {{ whois_info['dnssec'] }}<br>
+                    Name: {{ whois_info['name'] }}<br>
+                    Org: {{ whois_info['org'] }}<br>
+                    Address: {{ whois_info['address'] }}<br>
+                    Country: {{ whois_info['country'] }}<br>
+            </div>
+            <div class="collapse multi-collapse content-section" id="Links" data-parent="#parentGroup">
+                {% for links_lines in links_info %}
+                <li class="list-group-item"> {{ links_lines }} </li>
+                {% endfor %}
+            </div>
+            
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock content %}

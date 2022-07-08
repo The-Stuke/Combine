@@ -1,0 +1,17 @@
+version: '3.3'
+services:
+  combine:
+    image: 'thestuke/combine:latest'
+    container_name: combine
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - SECRET_KEY=${SECRET_KEY} # This is your secret key for your Flask application
+      - VIRUS_TOTAL_API_KEY=${VIRUS_TOTAL_API_KEY} # This is your VirusTotal API Key
+    volumes:
+      - /opt/combine/data/profile_pics/:/combine/flaskapp/static/profile_pics
+      - /opt/combine/data/results:/combine/flaskapp/static/results
+      - /opt/combine/data/site.db:/combine/flaskapp/site.db
+    ports:
+      - 5000:5000
+    restart: unless-stopped

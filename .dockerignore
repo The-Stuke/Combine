@@ -1,0 +1,7 @@
+.git
+.gitignore
+.dockerignore
+README.md
+Dockerfile*
+docker-compose*
+requirements.txt

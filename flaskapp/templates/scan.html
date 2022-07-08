@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="row text-center">
+    <img src="static/img/combine-logo.png" class="img-thumbnail float-right" alt="Combine Logo">
+</div>
+<div class="input-group input-group-lg d-inline-block pad">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+            <div class="form-group">
+                <label for="useragent" class="col-sm-3">Enter URL</label>
+                {{ form.SubmitURL(class="form-control col-sm-3") }}
+                {{ form.submit(class="form-control col-sm-3") }}
+                <label for="useragent" class="col-sm-3">Select a User Agent</label>
+                {{ form.SelectUA(class="form-control col-sm-3") }}
+                <label for="useragent" class="col-sm-3">Select a User Agent</label>
+                {{ form.EnterUA(class="form-control col-sm-3") }}
+            </div>
+    </form>
+</div>
+{% endblock content %}
+
