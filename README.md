@@ -1,4 +1,4 @@
-![Combine](/flaskapp/static/img/Combine-Logo.png)
+![Combine](/flaskapp/static/img/combine-logo.png)
 
 Combine: The International Web Harvester is a web application I built as a self hosted alternative to URLScan.io.
 
